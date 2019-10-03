@@ -44,3 +44,17 @@ En este espacio se detallaran cada una de las pruebas que comprenden cada uno de
   
 ![](Imagenes/7.JPG) 
 
+# Funciones Proyecto
+1. **Sistema Probabilistico**
+	![](Imagenes/F1.JPG)
+2. **Sistema Dinamico Cuantico**
+	![](Imagenes/F2.JPG)
+3. **Ensamblaje de sistema probabilistico**
+	![](Imagenes/F3.JPG)
+4. **Multiple Rendija**
+	![](Imagenes/F4.JPG)
+	
+# Pruebas
+![](Imagenes/P1.JPG)
+![](Imagenes/P2.JPG)
+
