@@ -236,6 +236,15 @@ public class Operaciones {
 	        return result;
     }
 	 
+	 public Complejo[][] restaMat (Complejo[][] matrixA, double[][] matrixB){
+		 Complejo [][] result = new Complejo[matrixA.length][matrixB[0].length];
+	        for (int i=0 ; i < matrixA.length; i++){
+	            for (int j=0; j < matrixA[i].length; j++){
+	                result[i][j] = Sum(matrixA[i][j], matrixA[i][j]);
+	            }
+	        }
+	        return matrixA;
+	    }
 	 
 	 
 	/***
@@ -534,5 +543,13 @@ public class Operaciones {
 	            }
 	        }
 	        return result;
+	    }
+	 
+	 public Complejo productoInterno(Complejo[] v1, Complejo[] v2){
+		 Complejo r = new Complejo(0,0);
+	        for (int i = 0; i < v1.length;i++) {
+	            r = Sum(r, Mult(Conjugado(v1[i]), Conjugado(v2[i])));
+	        }
+	        return r;
 	    }
 }

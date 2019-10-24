@@ -6,10 +6,31 @@ public class Main {
 	Operaciones oper = new Operaciones();
 	static Main main = new Main();
 	double [] vectorA = {0,0,0,0.050,0.050,0.050,0.050,0.050,0.050,0,0.175,0,0.1,0,0.050,0.050,0.050,0.050,0.050,0.050};
-	
+	double ams = 13.1;  
+    static double valor = 1.9;  
+    double mean = 1;
 	
 	
 	//======================= Funciones ===============================
+	
+	
+	/**
+     * Calcula la posición de una partícula en una recta.
+     * @param vector VectorComplejo
+     * @param points número de puntos sobre la recta
+     * @return probabilidad
+     */
+    private double PartRec(Complejo[] vec, int punto) {
+        Double n = 0.0;
+        for(int i = 0; i < vec.length;i++) {
+            n += Math.pow(oper.Modulo(vec[i]), 2);
+        }
+        Double norm = Math.sqrt(n);
+        Double prob = Math.pow(oper.Modulo(vec[punto-1]),2) / Math.pow(norm, 2);
+        main.ImprimirResultados(vectorA, punto);
+        return prob;
+    }
+	
 	
 	
 	/***
@@ -67,6 +88,29 @@ public class Main {
         
         double [] result = main.SistemaProbabilisticoReal(0, MatrizRes, vectorRes, clicks);        
         return result;
+    }
+	
+	
+	public Complejo valorMed(Complejo[] vecX, Complejo[][] ob) throws Exception{
+        Complejo[] ket = oper.MultMatrizVector(ob, vecX);
+        Complejo ans = oper.productoInterno(ket, vecX);
+        return ans;
+    }
+	
+	public Complejo varianza(Complejo[] vector, Complejo[][] observable) throws Exception {
+		Complejo meam = valorMed(vector, observable);
+        double[][] identity = {  {1,0,0,0},
+                                 {0,1,0,0},
+                                 {0,0,1,0},
+                                 {0,0,0,1},
+                              };
+        double[][] mult = oper.MultMatrizRealxReal(mean, identity);
+        Complejo[][] temp = oper.restaMat(observable, mult);
+        Complejo[] act = oper.MultMatrizVector(temp, vector);
+        Complejo ans = oper.productoInterno(vector, act);
+        System.out.println("Varianza = " + ams);
+        return ans;
+
     }
 	
 	/***
@@ -132,8 +176,68 @@ public class Main {
 	
 	//=============================== Pruebas =====================================
 	
-	public static void main(String[] args) throws Exception{  
-        //DATOS PRUEBA 1
+	public static void main(String[] args) throws Exception{
+		
+		
+		//---------- Prueba 1 -------------
+		
+		Complejo A1 = new Complejo(2,-1);
+		Complejo A2 = new Complejo(-1.5,2.5);
+		Complejo A3 = new Complejo(-3.5,5);
+		Complejo A4 = new Complejo(-4,6);
+		Complejo A5 = new Complejo(-3.5,2.5);
+		Complejo A6 = new Complejo(0,0);
+		Complejo A7 = new Complejo(-3.5,2.5);
+		Complejo A8 = new Complejo(6,-4);
+		Complejo A9 = new Complejo(0,2.5);
+		Complejo A10 = new Complejo(-1,1);
+		
+		Complejo [] Vec1 = {A1,A2,A3,A4,A5,A6,A7,A8,A9,A10};
+		double resp = main.PartRec(Vec1, 10);
+		
+		//---------- Prueba 2 -------------
+		
+		Complejo B1 = new Complejo(0,0);
+		Complejo B2 = new Complejo(0,-0.5);
+		Complejo B3 = new Complejo(0,-1);
+		Complejo B4 = new Complejo(-3.5,0);
+		Complejo B5 = new Complejo(0,0.5);
+		Complejo B6 = new Complejo(0,0);
+		Complejo B7 = new Complejo(3.5,0);
+		Complejo B8 = new Complejo(0,-1);
+		Complejo B9 = new Complejo(0,1);
+		Complejo B10 = new Complejo(3.5,0);
+		Complejo B11 = new Complejo(0,0);
+		Complejo B12 = new Complejo(0,-3.5);
+		Complejo B13 = new Complejo(-3.5,0);
+		Complejo B14 = new Complejo(0,1);
+		Complejo B15 = new Complejo(0,0.5);
+		Complejo B16 = new Complejo(0,0);
+		
+		
+		Complejo [][] MatrizO = {  {B1,B2,B3,B4},
+                							{B5,B6,B7,B8},
+                							{B9,B10,B11,B12},
+                							{B13,B14,B15,B16}
+											};
+		
+		Complejo C1 = new Complejo(-2, 1);
+		Complejo C2 = new Complejo(1, 0);
+		Complejo C3 = new Complejo(0, -1);
+		Complejo C4 = new Complejo(3, 2);
+		
+		Complejo[] estadoInicial = {C2,C2,C3,C4};   
+		main.valorMed(estadoInicial, MatrizO);
+		System.out.println("Valor esperado = " + valor);
+		main.varianza(estadoInicial, MatrizO);
+		
+		
+        
+		/*
+		
+		
+		
+		//DATOS PRUEBA 1
         System.out.println("--------------------------------------- PRUEBA 1 --------------------------------------------------");
         double [][] matriz1 = { {0,0,0,0,0,0,0,0,0,0,0,0,1},
                                 {0,0,0,0,0,0,0,0,0,0,1,0,0},
@@ -176,7 +280,9 @@ public class Main {
         Complejo _rr = new Complejo(-r,r);
         Complejo r_r = new Complejo(r,-r);
         Complejo[] vector3 = {rr, _r_r, _rr, _r_r, r_r, _r_r, _r_r,    _r_r, r_r, r_r, _rr};
-        double [] res3 = main.MultipleRendijasCuantico(2, 5, vector3, 2);        
+        double [] res3 = main.MultipleRendijasCuantico(2, 5, vector3, 2);      
+        
+          */
     }
 	
 	
