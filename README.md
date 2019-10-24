@@ -60,7 +60,7 @@ En este espacio se detallaran cada una de las pruebas que comprenden cada uno de
 
 # Pruebas Proyecto 4
 
-Prueba 1
+**Prueba 1**
 
 ![](Imagenes/Prueba1.JPG)
 ![](Imagenes/Fin11.JPG)
@@ -77,9 +77,10 @@ n    Valor
 9  | *  (.01)
 
 
-PRUEBA 2
+**PRUEBA 2**
 ![](Imagenes/Prueba2.JPG)
 ![](Imagenes/Fun21.JPG)
+
 Valor esperado = 1.9
 Varianza = 13.1
 
