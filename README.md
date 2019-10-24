@@ -62,24 +62,35 @@ En este espacio se detallaran cada una de las pruebas que comprenden cada uno de
 
 **Prueba 1**
 
-![](Imagenes/Prueba1.JPG)
-![](Imagenes/Fin11.JPG)
+![](Imagenes/Prueba1.jpg)
+![](Imagenes/Fin11.jpg)
+
 n    Valor
+
 0  | ***  (.03)
+
 1  | ****  (.04)
+
 2  | *******************  (.19)
+
 3  | **************************  (.26)
+
 4  | *********  (.09)
+
 5  |   (.00)
+
 6  | *********  (.09)
+
 7  | **************************  (.26)
+
 8  | ***  (.03)
+
 9  | *  (.01)
 
 
 **PRUEBA 2**
-![](Imagenes/Prueba2.JPG)
-![](Imagenes/Fun21.JPG)
+![](Imagenes/Prueba2.jpg)
+![](Imagenes/Fun21.jpg)
 
 Valor esperado = 1.9
 Varianza = 13.1
